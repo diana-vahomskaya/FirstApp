@@ -66,23 +66,23 @@ namespace PointsThree
 
             double radius = Math.Sqrt(((polyperimetr - line_a) * (polyperimetr - line_b) * (polyperimetr - line_c)) / polyperimetr);
 
-            double w1 = (point1.X * line_b + point2.X * line_c + point3.X * line_a) / (line_a + line_b + line_c);
-            double w2 = (point1.Y * line_b + point2.Y * line_c + point3.Y * line_a) / (line_a + line_b + line_c);
+            double Xc = (point1.X * line_b + point2.X * line_c + point3.X * line_a) / (line_a + line_b + line_c);
+            double Yc = (point1.Y * line_b + point2.Y * line_c + point3.Y * line_a) / (line_a + line_b + line_c);
 
-            g.DrawRectangle(vertexPen, (float)(w1 ), (float)(w2 ), 2, 2); 
-            g.DrawEllipse(vertexPen, (float)(w1 - radius), (float)(w2 - radius), (float)(2 * radius), (float)(2 * radius));
+            g.DrawRectangle(vertexPen, (float)(Xc), (float)(Yc), 2, 2); 
+            g.DrawEllipse(vertexPen, (float)(Xc - radius), (float)(Yc - radius), (float)(2 * radius), (float)(2 * radius));
 
         }
         public void DrawCircleOutTriangle(Point point1, Point point2, Point point3)
         {
             Pen vertexPen = new Pen(Color.Bisque, 2);
 
-            double w1 = ((point2.X * point2.X - point1.X * point1.X + point2.Y * point2.Y - point1.Y * point1.Y) * (point3.Y - point1.Y) - (point3.X * point3.X - point1.X * point1.X + point3.Y * point3.Y - point1.Y * point1.Y) * (point2.Y - point1.Y)) / ((point2.X - point1.X) * (point3.Y - point1.Y) - (point3.X - point1.X) * (point2.Y - point1.Y)) / 2.0;
-            double w2 = ((point3.X * point3.X - point1.X * point1.X + point3.Y * point3.Y - point1.Y * point1.Y) * (point2.X - point1.X) - (point2.X * point2.X - point1.X * point1.X + point2.Y * point2.Y - point1.Y * point1.Y) * (point3.X - point1.X)) / ((point2.X - point1.X) * (point3.Y - point1.Y) - (point3.X - point1.X) * (point2.Y - point1.Y)) / 2.0;
-            double Rad = Math.Sqrt((w1 - point1.X) * (w1 - point1.X) + (w2 - point1.Y) * (w2 - point1.Y));
+            double Xc = ((point2.X * point2.X - point1.X * point1.X + point2.Y * point2.Y - point1.Y * point1.Y) * (point3.Y - point1.Y) - (point3.X * point3.X - point1.X * point1.X + point3.Y * point3.Y - point1.Y * point1.Y) * (point2.Y - point1.Y)) / ((point2.X - point1.X) * (point3.Y - point1.Y) - (point3.X - point1.X) * (point2.Y - point1.Y)) / 2.0;
+            double Yc = ((point3.X * point3.X - point1.X * point1.X + point3.Y * point3.Y - point1.Y * point1.Y) * (point2.X - point1.X) - (point2.X * point2.X - point1.X * point1.X + point2.Y * point2.Y - point1.Y * point1.Y) * (point3.X - point1.X)) / ((point2.X - point1.X) * (point3.Y - point1.Y) - (point3.X - point1.X) * (point2.Y - point1.Y)) / 2.0;
+            double Rad = Math.Sqrt((Xc - point1.X) * (Xc - point1.X) + (Yc - point1.Y) * (Yc - point1.Y));
 
-            g.DrawRectangle(vertexPen, (float)(w1), (float)(w2), 2, 2);
-            g.DrawEllipse(vertexPen, (float)(w1 - Rad), (float)(w2 - Rad), (float)(2.0 * Rad), (float)(2.0 * Rad));
+            g.DrawRectangle(vertexPen, (float)(Xc), (float)(Yc), 2, 2);
+            g.DrawEllipse(vertexPen, (float)(Xc - Rad), (float)(Yc - Rad), (float)(2.0 * Rad), (float)(2.0 * Rad));
         }
         private void DRAW_Click(object sender, EventArgs e)
         {
